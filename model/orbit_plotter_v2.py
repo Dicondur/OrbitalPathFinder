@@ -48,6 +48,4 @@ class Orbit_plotter:
         plt.plot(self.x_transit,self.y_transit,'.')
         plt.show()
         
-#a1= Orbit_plotter(obj.Jupiter)
-#a1.plot_orbit()
 

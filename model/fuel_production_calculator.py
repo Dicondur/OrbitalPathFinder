@@ -3,7 +3,7 @@ import object_data as obj
 import fuel_usage_calculator as fuc
 
 '''
-237 kJ of energy for each mole of water, thus creating 2g of hydrogen and
+237 kJ of energy for each mole of electrolysis, thus creating 2g of hydrogen and
 16g of oxygen.
 
 required Fuel Ratio is inputted, and the time needed, given a power source

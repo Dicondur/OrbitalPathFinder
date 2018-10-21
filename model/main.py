@@ -94,6 +94,7 @@ print ('The inner circle is the orbit of Earth, the outer circle is the orbit of
 print ('The ellipse is the Hohmann transit orbit')
 orbit_plot = op.Orbit_plotter(end_location)
 orbit_plot.plot_orbit()
+plt.clf()
 
 
 
