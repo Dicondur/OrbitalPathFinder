@@ -1,4 +1,5 @@
 import numpy as np
+import datetime as dt
 
 '''
 Objects in array are of the following form. Note everything is in SI
@@ -18,3 +19,17 @@ Pallas2 = [4.14805e11,1.4567e8, [ [23,10,2017] ] ]
 
 
 Month = [31,28,31,30,31,30,31,31,30,31,30,31]
+
+def get_launch_dates(End_location, launch_time_days):
+    
+    opposition_list = End_location[2]
+    launch_dates = []
+    for i in range(len(opposition_list)):
+        day = opposition_list[i][0]
+        month = opposition_list[i][1]
+        year = opposition_list[i][2]
+        
+        date = dt.date(year,month,day)
+        launch_dates.append(date + dt.timedelta(days=launch_time_days))
+        
+    return launch_dates

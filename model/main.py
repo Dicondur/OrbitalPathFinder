@@ -6,6 +6,7 @@ import orbit_plotter_v2 as op
 import fuel_usage_calculator as fuc
 import fuel_production_calculator as fpc
 from flask import Flask, render_template
+import datetime as dt
 '''
 app = Flask(__name__)
 app.debug = True
@@ -35,6 +36,15 @@ time from opposition to launch
 launch_time = ltc.Launch_time_calculator(end_location)
 print ('The time in seconds after opposition that you must launch is: ')
 print (launch_time.Time_to_launch)
+print ('In days, this is:')
+print (launch_time.Time_to_launch/(24*60**2))
+print ('from opposition. There is a method within object_data called get_launch_dates')
+launch_dates = obj.get_launch_dates(end_location, launch_time.Time_to_launch/(24*60**2))
+print ('So therefore the possible launch dates are the following:')
+for i in range(len(launch_dates)):
+    print (launch_dates[i])
+
+
 print ('')
 
 #----------------------------------------------
@@ -95,10 +105,6 @@ print ('The ellipse is the Hohmann transit orbit')
 orbit_plot = op.Orbit_plotter(end_location)
 orbit_plot.plot_orbit()
 plt.clf()
-
-
-
-
 
 
 
