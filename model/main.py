@@ -188,7 +188,10 @@ class Main:
         tk.Label(root, text='The amount of fuel in kg needed is: '+str(self.fuel())+'kg', font=20).grid(row=31, column=0, sticky='W')
         tk.Label(root, text='The time it would take to produce fuel required for a return is: '+str(self.fuel_prod())+' days', font=20).grid(row=32, column=0, sticky='W')
 
+    def plot_results(self):
         
+        orbit_plot = op.Orbit_plotter(self.end_location)
+        orbit_plot.plot_orbit()
         
 
 a = Main()
@@ -238,6 +241,10 @@ tk.Button(root, text="Confirm", width=6, command=a.select_panel_efficiency).grid
 
 # Display Results
 tk.Button(root, text="Calculate", width=6, command=a.display_results).grid(row=29,column=0,sticky='W')
+
+# Display plot
+tk.Button(root, text="Plot!", width=6, command=a.plot_results).grid(row=29,column=0,sticky='W')
+
 
 root.mainloop()
 
