@@ -161,7 +161,7 @@ class Main:
         launch_time = ltc.Launch_time_calculator(self.end_location)
         days = launch_time.Time_to_launch/(24*60**2)
         
-        self.launch_dates = obj.get_launch_dates(end_location, days)
+        self.launch_dates = obj.get_launch_dates(self.end_location, days)
         return self.launch_dates
         
     def fuel(self):
@@ -174,7 +174,7 @@ class Main:
                 self.end_location,self.fuel_ratio,self.panel_area,self.panel_efficiency,self.payload,self.fuel_speed
                 )
         self.time_for_fuel = time_needed.time_needed
-        return self.time_for_fuel
+        return self.time_for_fuel/(24*60**2)
     
     def display_launch_dates(self):
         c = ''
@@ -182,10 +182,13 @@ class Main:
              c += str((self.launch_dates[i]))+" "
              
         return c
+    
+    def display_results(self):
+        tk.Label(root, text='The next optimal Lauch date is: '+str(self.launch_times()[0]), font=20).grid(row=30, column=0, sticky='W')
+        tk.Label(root, text='The amount of fuel in kg needed is: '+str(self.fuel())+'kg', font=20).grid(row=31, column=0, sticky='W')
+        tk.Label(root, text='The time it would take to produce fuel required for a return is: '+str(self.fuel_prod())+' days', font=20).grid(row=32, column=0, sticky='W')
+
         
-        
-def write_launch(a):
-    tk.Label(root, text=a.display_launch_dates(), font=20).grid(row=27, column=0, sticky='W')
         
 
 a = Main()
@@ -200,44 +203,41 @@ root.geometry("500x900")
 tk.Label(root, text="Please Select your Destination!", font=20).grid(row=0, column=0, sticky='W')
 tk.Button(root, text="Mars", width=6, command=a.select_Mars).grid(row=1,column=0,sticky='W')
 tk.Button(root, text="Jupiter", width=6, command=a.select_Jupiter).grid(row=2,column=0,sticky='W')
-tk.Button(root, text="Select", width=6, command=a.select_dest).grid(row=3,column=0,sticky='W')
+tk.Button(root, text="Confirm", width=6, command=a.select_dest).grid(row=3,column=0,sticky='W')
 
 # Payload Mass
 tk.Label(root, text="Please Select your Payload Mass (in kg)!", font=20).grid(row=5, column=0, sticky='W')
 payload = tk.Entry()
 payload.grid(row=6,column=0, sticky='W')
-tk.Button(root, text="Select", width=6, command=a.select_payload).grid(row=7,column=0,sticky='W')
+tk.Button(root, text="Confirm", width=6, command=a.select_payload).grid(row=7,column=0,sticky='W')
 
 # Fuel Speed
 tk.Label(root, text="Please Select your Fuel Speed (in m/s)!", font=20).grid(row=9, column=0, sticky='W')
 fuel_speed = tk.Entry()
 fuel_speed.grid(row=10,column=0, sticky='W')
-tk.Button(root, text="Select", width=6, command=a.select_fuel_speed).grid(row=11,column=0,sticky='W')
+tk.Button(root, text="Confirm", width=6, command=a.select_fuel_speed).grid(row=11,column=0,sticky='W')
 
 # Fuel Ratio
 tk.Label(root, text="Please Select the Ratio of Liquid Hydrogen to", font=20).grid(row=13, column=0, sticky='W')
 tk.Label(root, text="Liquid Oxygen you would need (between 0 and 1)!", font=20).grid(row=14, column=0, sticky='W')
 fuel_ratio = tk.Entry()
 fuel_ratio.grid(row=15,column=0, sticky='W')
-tk.Button(root, text="Select", width=6, command=a.select_fuel_ratio).grid(row=16,column=0,sticky='W')
+tk.Button(root, text="Confirm", width=6, command=a.select_fuel_ratio).grid(row=16,column=0,sticky='W')
 
 # Panel Area
 tk.Label(root, text="Please Select the Area of the Solar Panel you have!", font=20).grid(row=18, column=0, sticky='W')
 panel_area = tk.Entry()
 panel_area.grid(row=20,column=0, sticky='W')
-tk.Button(root, text="Select", width=6, command=a.select_panel_area).grid(row=21,column=0,sticky='W')
+tk.Button(root, text="Confirm", width=6, command=a.select_panel_area).grid(row=21,column=0,sticky='W')
 
 # Panel Efficiency
 tk.Label(root, text="Please Select the Efficiency of the Solar Panel you have!", font=20).grid(row=23, column=0, sticky='W')
 panel_efficiency = tk.Entry()
 panel_efficiency.grid(row=24,column=0, sticky='W')
-tk.Button(root, text="Select", width=6, command=a.select_panel_efficiency).grid(row=25,column=0,sticky='W')
+tk.Button(root, text="Confirm", width=6, command=a.select_panel_efficiency).grid(row=25,column=0,sticky='W')
 
-
-
-tk.Label(root, text="Optimal Launch Dates Are:", font=20).grid(row=27, column=0, sticky='W')
-tk.Label(root, text=a.display_launch_dates(), font=20).grid(row=28, column=0, sticky='W')
-
+# Display Results
+tk.Button(root, text="Calculate", width=6, command=a.display_results).grid(row=29,column=0,sticky='W')
 
 root.mainloop()
 
