@@ -30,5 +30,3 @@ class Fuel_usage_calculator:
         # Fuel Mass Needed
         self.Fuel_mass = self.mass_initial - payload
         
-a = Fuel_usage_calculator(obj.Mars, 1000, 4440)
-print (a.Fuel_mass)

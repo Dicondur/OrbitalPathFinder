@@ -39,6 +39,3 @@ class Fuel_production_calculator:
         
         self.time_needed = self.energy_needed/self.power_output
         
-
-a = Fuel_production_calculator(obj.Mars, 0.5, 1, 0.2, 1000, 2440)
-print (a.time_needed/(24*60**2))

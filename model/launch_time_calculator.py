@@ -36,14 +36,12 @@ class Launch_time_calculator:
         self.Launch_wait = self.Relative_angle / (Earth_freq-self.End_freq)
         
         # In days
-        self.Time_to_launch = self.Launch_wait/(24*60**2)
+        self.Time_to_launch = self.Launch_wait
         
         # angle of both during launch time
         self.Earth_angle_at_launch = self.Time_to_launch * Earth_freq
         self.End_angle_at_launch = self.Time_to_launch * self.End_freq
-        
-a = Launch_time_calculator(obj.Mars)
-print (a.Time_to_launch)
+
         
         
     
